@@ -107,6 +107,18 @@
   .animate-bounce-slow {
     animation: bounce 2s infinite;
   }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 4s ease-in-out infinite;
+  }
+
+  .animate-rotate-slow {
+    animation: rotateSlow 20s linear infinite;
+  }
+
+  .animate-scroll-horizontal {
+    animation: scrollHorizontal 30s linear infinite;
+  }
 }
 
 @keyframes fadeInUp {
@@ -150,6 +162,27 @@
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.05); 
+  }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scrollHorizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .industry-card {
