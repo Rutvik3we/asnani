@@ -2,6 +2,14 @@
 
 This is a recruitment agency website for Asnani HR Solutions, a manpower consultancy specializing in Gulf/Middle East recruitment since 2011. The application is built as a full-stack web application with a React frontend and Express backend, featuring a modern, responsive design for showcasing services across various industries including construction, oil & gas, hospitality, HVAC, manufacturing, and facility management.
 
+## Recent Changes (August 2025)
+
+- Added animated clients showcase section with 12+ major Gulf/Middle East companies
+- Implemented responsive design with scrolling carousel for desktop and grid layout for mobile
+- Added client testimonials with 5-star ratings and success statistics
+- Enhanced animations with floating, pulsing, and horizontal scrolling effects
+- Integrated "Clients" navigation menu item for easy access
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
