@@ -139,28 +139,7 @@ export function ClientsSection() {
               ))}
             </div>
           </div>
-          
-          {/* Static Grid for Mobile */}
-          <div className="mt-8 md:hidden">
-            <div className="grid grid-cols-2 gap-4">
-              {clients.slice(0, 8).map((client, index) => (
-                <Card 
-                  key={`mobile-${client.name}`}
-                  className="industry-card text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 bg-white"
-                >
-                  <CardContent className="p-3 flex flex-col items-center">
-                    {/* Client Logo Image for Mobile */}
-                    <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center mb-2 shadow-md overflow-hidden border-2 border-gray-100 hover:border-primary/20 transition-colors">
-                      {getCompanyLogo(client.name)}
-                    </div>
-                    <h4 className="font-semibold text-xs mb-1 text-gray-800">{client.name}</h4>
-                    <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
-                    <p className="text-xs text-gray-400">{client.country}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+
         </div>
 
         {/* Testimonials */}
