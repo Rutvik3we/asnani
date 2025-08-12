@@ -1,6 +1,7 @@
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Building, Star } from 'lucide-react';
+import { getCompanyLogo } from '@/assets/company-logos';
 
 // Client data based on typical Gulf/Middle East companies in the industries we serve
 const clients = [
@@ -114,32 +115,51 @@ export function ClientsSection() {
           </p>
         </div>
 
-        {/* Client Logos Grid */}
+        {/* Sliding Client Carousel */}
         <div className="mb-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6">
-            {clients.map((client, index) => (
-              <Card 
-                key={client.name}
-                className={`industry-card text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 ${
-                  isVisible ? 'animate-fade-in' : 'opacity-0'
-                } ${index % 3 === 0 ? 'animate-float' : ''}`}
-                style={{ 
-                  animationDelay: `${index * 100}ms`,
-                  animationDuration: index % 3 === 0 ? `${4 + (index % 2)}s` : undefined
-                }}
-              >
-                <CardContent className="p-3 md:p-4 lg:p-6 flex flex-col items-center">
-                  <div className={`w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary via-secondary to-accent text-white rounded-full flex items-center justify-center mb-2 md:mb-3 text-sm md:text-lg lg:text-xl font-bold shadow-lg ${
-                    index % 4 === 0 ? 'animate-pulse-slow' : ''
-                  }`}>
-                    {client.logo}
-                  </div>
-                  <h4 className="font-semibold text-xs md:text-sm mb-1 text-gray-800">{client.name}</h4>
-                  <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
-                  <p className="text-xs text-gray-400">{client.country}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="overflow-hidden relative">
+            <div className="flex animate-scroll-horizontal space-x-4 md:space-x-6">
+              {[...clients, ...clients, ...clients].map((client, index) => (
+                <div 
+                  key={`${client.name}-${index}`}
+                  className="flex-shrink-0 w-40 md:w-44 lg:w-48"
+                >
+                  <Card className="industry-card text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 bg-white">
+                    <CardContent className="p-3 md:p-4 lg:p-6 flex flex-col items-center">
+                      {/* Client Logo Image */}
+                      <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-lg flex items-center justify-center mb-3 shadow-md overflow-hidden border-2 border-gray-100 hover:border-primary/20 transition-colors">
+                        {getCompanyLogo(client.name)}
+                      </div>
+                      <h4 className="font-semibold text-xs md:text-sm mb-1 text-gray-800">{client.name}</h4>
+                      <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
+                      <p className="text-xs text-gray-400">{client.country}</p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Static Grid for Mobile */}
+          <div className="mt-8 md:hidden">
+            <div className="grid grid-cols-2 gap-4">
+              {clients.slice(0, 8).map((client, index) => (
+                <Card 
+                  key={`mobile-${client.name}`}
+                  className="industry-card text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 bg-white"
+                >
+                  <CardContent className="p-3 flex flex-col items-center">
+                    {/* Client Logo Image for Mobile */}
+                    <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center mb-2 shadow-md overflow-hidden border-2 border-gray-100 hover:border-primary/20 transition-colors">
+                      {getCompanyLogo(client.name)}
+                    </div>
+                    <h4 className="font-semibold text-xs mb-1 text-gray-800">{client.name}</h4>
+                    <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
+                    <p className="text-xs text-gray-400">{client.country}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
 
