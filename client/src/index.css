@@ -117,7 +117,15 @@
   }
 
   .animate-scroll-horizontal {
-    animation: scrollHorizontal 30s linear infinite;
+    animation: scrollHorizontal 25s linear infinite;
+  }
+
+  .animate-wiggle {
+    animation: wiggle 2s ease-in-out infinite;
+  }
+
+  .animate-scale-pulse {
+    animation: scalePulse 3s ease-in-out infinite;
   }
 }
 
@@ -182,18 +190,28 @@
 
 @keyframes scrollHorizontal {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@media (max-width: 768px) {
-  .animate-scroll-horizontal {
-    animation: scrollHorizontalMobile 25s linear infinite;
-  }
+  100% { transform: translateX(-33.333%); }
 }
 
 @keyframes scrollHorizontalMobile {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-60%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@media (max-width: 768px) {
+  .animate-scroll-horizontal {
+    animation: scrollHorizontalMobile 20s linear infinite;
+  }
 }
 
 .industry-card {
