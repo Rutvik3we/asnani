@@ -103,7 +103,7 @@ export function ClientsSection() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="clients" ref={ref} className="py-20 bg-white">
+    <section id="clients" ref={ref} className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -114,21 +114,21 @@ export function ClientsSection() {
           </p>
         </div>
 
-        {/* Animated Client Logos Carousel */}
-        <div className={`overflow-hidden mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          <div className="flex animate-scroll-horizontal space-x-8">
+        {/* Animated Client Logos Carousel - Desktop */}
+        <div className={`hidden md:block overflow-hidden mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+          <div className="flex animate-scroll-horizontal space-x-6">
             {[...clients, ...clients].map((client, index) => (
               <Card 
                 key={`${client.name}-${index}`}
-                className="industry-card text-center cursor-pointer hover:shadow-lg flex-shrink-0 w-48"
+                className="industry-card text-center cursor-pointer hover:shadow-lg flex-shrink-0 w-44 lg:w-48"
               >
-                <CardContent className="p-6 flex flex-col items-center">
-                  <div className={`w-16 h-16 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-3 text-xl font-bold ${
+                <CardContent className="p-4 lg:p-6 flex flex-col items-center">
+                  <div className={`w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-3 text-lg lg:text-xl font-bold ${
                     index % 4 === 0 ? 'animate-pulse-slow' : ''
                   }`}>
                     {client.logo}
                   </div>
-                  <h4 className="font-semibold text-sm mb-1">{client.name}</h4>
+                  <h4 className="font-semibold text-xs lg:text-sm mb-1">{client.name}</h4>
                   <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
                   <p className="text-xs text-gray-400">{client.country}</p>
                 </CardContent>
@@ -137,54 +137,56 @@ export function ClientsSection() {
           </div>
         </div>
 
-        {/* Static Client Grid for Mobile */}
-        <div className="grid grid-cols-2 md:hidden gap-6 mb-16">
-          {clients.slice(0, 8).map((client, index) => (
-            <Card 
-              key={client.name}
-              className={`industry-card text-center cursor-pointer hover:shadow-lg ${
-                isVisible ? 'animate-fade-in' : 'opacity-0'
-              } ${index % 3 === 0 ? 'animate-float' : ''}`}
-              style={{ 
-                animationDelay: `${index * 100}ms`,
-                animationDuration: index % 3 === 0 ? `${3 + (index % 2)}s` : undefined
-              }}
-            >
-              <CardContent className="p-4 flex flex-col items-center">
-                <div className={`w-12 h-12 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-2 text-lg font-bold ${
-                  index % 4 === 0 ? 'animate-pulse-slow' : ''
-                }`}>
-                  {client.logo}
-                </div>
-                <h4 className="font-semibold text-xs mb-1">{client.name}</h4>
-                <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
-                <p className="text-xs text-gray-400">{client.country}</p>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Static Client Grid for Mobile and Tablet */}
+        <div className="md:hidden mb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {clients.slice(0, 9).map((client, index) => (
+              <Card 
+                key={client.name}
+                className={`industry-card text-center cursor-pointer hover:shadow-lg ${
+                  isVisible ? 'animate-fade-in' : 'opacity-0'
+                } ${index % 3 === 0 ? 'animate-float' : ''}`}
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  animationDuration: index % 3 === 0 ? `${3 + (index % 2)}s` : undefined
+                }}
+              >
+                <CardContent className="p-3 sm:p-4 flex flex-col items-center">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary text-white rounded-full flex items-center justify-center mb-2 text-sm sm:text-base font-bold ${
+                    index % 4 === 0 ? 'animate-pulse-slow' : ''
+                  }`}>
+                    {client.logo}
+                  </div>
+                  <h4 className="font-semibold text-xs mb-1">{client.name}</h4>
+                  <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
+                  <p className="text-xs text-gray-400">{client.country}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         {/* Testimonials */}
         <div className={`${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          <h3 className="text-2xl font-bold text-center mb-8">What Our Clients Say</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">What Our Clients Say</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
               <Card 
                 key={index}
                 className={`${isVisible ? 'animate-slide-in-left' : 'opacity-0'}`}
                 style={{ animationDelay: `${(index + 6) * 100}ms` }}
               >
-                <CardContent className="p-6">
-                  <div className="flex mb-4">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex mb-3 sm:mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-accent fill-current" />
+                      <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 text-accent fill-current" />
                     ))}
                   </div>
-                  <blockquote className="text-gray-600 mb-4 italic">
+                  <blockquote className="text-gray-600 mb-3 sm:mb-4 italic text-sm sm:text-base">
                     "{testimonial.text}"
                   </blockquote>
-                  <div className="border-t pt-4">
-                    <p className="font-semibold text-sm">{testimonial.client}</p>
+                  <div className="border-t pt-3 sm:pt-4">
+                    <p className="font-semibold text-xs sm:text-sm">{testimonial.client}</p>
                     <p className="text-xs text-gray-500">{testimonial.company}</p>
                   </div>
                 </CardContent>
@@ -194,27 +196,27 @@ export function ClientsSection() {
         </div>
 
         {/* Success Stats */}
-        <div className={`mt-16 bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+        <div className={`mt-16 bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-4 sm:p-6 lg:p-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
             <div>
-              <Building className="h-12 w-12 text-accent mx-auto mb-4" />
-              <h4 className="text-3xl font-bold mb-2">500+</h4>
-              <p className="opacity-90">Companies Served</p>
+              <Building className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
+              <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">500+</h4>
+              <p className="opacity-90 text-xs sm:text-sm lg:text-base">Companies Served</p>
             </div>
             <div>
-              <Building className="h-12 w-12 text-accent mx-auto mb-4" />
-              <h4 className="text-3xl font-bold mb-2">15+</h4>
-              <p className="opacity-90">Countries</p>
+              <Building className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
+              <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">15+</h4>
+              <p className="opacity-90 text-xs sm:text-sm lg:text-base">Countries</p>
             </div>
             <div>
-              <Building className="h-12 w-12 text-accent mx-auto mb-4" />
-              <h4 className="text-3xl font-bold mb-2">98%</h4>
-              <p className="opacity-90">Client Satisfaction</p>
+              <Building className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
+              <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">98%</h4>
+              <p className="opacity-90 text-xs sm:text-sm lg:text-base">Client Satisfaction</p>
             </div>
             <div>
-              <Building className="h-12 w-12 text-accent mx-auto mb-4" />
-              <h4 className="text-3xl font-bold mb-2">24/7</h4>
-              <p className="opacity-90">Support Available</p>
+              <Building className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
+              <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2">24/7</h4>
+              <p className="opacity-90 text-xs sm:text-sm lg:text-base">Support Available</p>
             </div>
           </div>
         </div>

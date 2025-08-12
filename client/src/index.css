@@ -185,6 +185,17 @@
   100% { transform: translateX(-50%); }
 }
 
+@media (max-width: 768px) {
+  .animate-scroll-horizontal {
+    animation: scrollHorizontalMobile 25s linear infinite;
+  }
+}
+
+@keyframes scrollHorizontalMobile {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-60%); }
+}
+
 .industry-card {
   transition: all 0.3s ease;
 }
