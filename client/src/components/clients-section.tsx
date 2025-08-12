@@ -103,9 +103,9 @@ export function ClientsSection() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="clients" ref={ref} className="py-12 sm:py-16 lg:py-20 bg-white">
+    <section id="clients" ref={ref} className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`text-center mb-8 md:mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Our <span className="text-primary">Trusted Clients</span>
           </h2>
@@ -114,79 +114,32 @@ export function ClientsSection() {
           </p>
         </div>
 
-        {/* Animated Client Logos - All Devices */}
-        <div className="mb-16">
-          {/* Main Carousel */}
-          <div className={`overflow-hidden relative ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-            <div className="flex animate-scroll-horizontal space-x-4 md:space-x-6">
-              {[...clients, ...clients, ...clients].map((client, index) => (
-                <div 
-                  key={`${client.name}-${index}`}
-                  className={`flex-shrink-0 w-40 md:w-44 lg:w-48 ${
-                    index % 5 === 0 ? 'animate-float' : 
-                    index % 5 === 1 ? 'animate-bounce-slow' :
-                    index % 5 === 2 ? 'animate-wiggle' :
-                    index % 5 === 3 ? 'animate-scale-pulse' : ''
-                  }`}
-                  style={{ 
-                    animationDelay: `${index * 300}ms`,
-                    animationDuration: `${3 + (index % 4)}s`
-                  }}
-                >
-                  <Card className="industry-card text-center cursor-pointer hover:shadow-2xl hover:scale-110 hover:-translate-y-2 transition-all duration-500 bg-white border-2 border-transparent hover:border-primary/20">
-                    <CardContent className="p-4 lg:p-6 flex flex-col items-center">
-                      <div className={`w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary via-secondary to-accent text-white rounded-full flex items-center justify-center mb-3 text-lg lg:text-xl font-bold shadow-xl ${
-                        index % 3 === 0 ? 'animate-pulse-slow' : 
-                        index % 3 === 1 ? 'animate-spin' : 'animate-bounce'
-                      }`}
-                      style={{ 
-                        animationDuration: index % 3 === 1 ? '10s' : '2s'
-                      }}>
-                        {client.logo}
-                      </div>
-                      <h4 className="font-semibold text-sm mb-1 text-gray-800 hover:text-primary transition-colors">{client.name}</h4>
-                      <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
-                      <p className="text-xs text-gray-400">{client.country}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Static Grid for Better Mobile Experience */}
-          <div className="mt-8 md:hidden">
-            <div className="grid grid-cols-2 gap-4">
-              {clients.slice(0, 8).map((client, index) => (
-                <Card 
-                  key={`static-${client.name}`}
-                  className={`industry-card text-center cursor-pointer hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 ${
-                    isVisible ? 'animate-fade-in' : 'opacity-0'
-                  } ${index % 4 === 0 ? 'animate-bounce-slow' : 
-                      index % 4 === 1 ? 'animate-float' : 
-                      index % 4 === 2 ? 'animate-wiggle' : 'animate-scale-pulse'}`}
-                  style={{ 
-                    animationDelay: `${index * 200}ms`,
-                    animationDuration: `${3 + (index % 3)}s`
-                  }}
-                >
-                  <CardContent className="p-4 flex flex-col items-center">
-                    <div className={`w-14 h-14 bg-gradient-to-br from-primary via-secondary to-accent text-white rounded-full flex items-center justify-center mb-3 text-base font-bold shadow-lg ${
-                      index % 3 === 0 ? 'animate-pulse-slow' : 
-                      index % 3 === 1 ? 'animate-ping' : 'animate-bounce'
-                    }`}
-                    style={{ 
-                      animationDuration: index % 3 === 1 ? '3s' : '2s'
-                    }}>
-                      {client.logo}
-                    </div>
-                    <h4 className="font-semibold text-xs mb-1 hover:text-primary transition-colors">{client.name}</h4>
-                    <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
-                    <p className="text-xs text-gray-400">{client.country}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        {/* Client Logos Grid */}
+        <div className="mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6">
+            {clients.map((client, index) => (
+              <Card 
+                key={client.name}
+                className={`industry-card text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 ${
+                  isVisible ? 'animate-fade-in' : 'opacity-0'
+                } ${index % 3 === 0 ? 'animate-float' : ''}`}
+                style={{ 
+                  animationDelay: `${index * 100}ms`,
+                  animationDuration: index % 3 === 0 ? `${4 + (index % 2)}s` : undefined
+                }}
+              >
+                <CardContent className="p-3 md:p-4 lg:p-6 flex flex-col items-center">
+                  <div className={`w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary via-secondary to-accent text-white rounded-full flex items-center justify-center mb-2 md:mb-3 text-sm md:text-lg lg:text-xl font-bold shadow-lg ${
+                    index % 4 === 0 ? 'animate-pulse-slow' : ''
+                  }`}>
+                    {client.logo}
+                  </div>
+                  <h4 className="font-semibold text-xs md:text-sm mb-1 text-gray-800">{client.name}</h4>
+                  <p className="text-xs text-gray-500 mb-1">{client.industry}</p>
+                  <p className="text-xs text-gray-400">{client.country}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
 
@@ -220,7 +173,7 @@ export function ClientsSection() {
         </div>
 
         {/* Success Stats */}
-        <div className={`mt-16 bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-4 sm:p-6 lg:p-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <div className={`mt-12 bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-4 sm:p-6 lg:p-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center">
             <div>
               <Building className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-accent mx-auto mb-2 sm:mb-3 lg:mb-4" />
