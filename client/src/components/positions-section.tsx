@@ -1,50 +1,87 @@
 import { useState } from 'react';
-import { ChevronDown, HardHat, Zap, ConciergeBell, Fan, Check } from 'lucide-react';
+import { ChevronDown, HardHat, Zap, ConciergeBell, Fan, Check, BrainCircuit, Scissors, Users, Building2 } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const positionsData = {
   construction: {
     title: "Construction",
     icon: HardHat,
+    color: "from-orange-500 to-orange-600",
     positions: [
       "Civil Engineer", "QA QC Engineer / Supervisor", "Estimator", "Land Surveyor", 
-      "Quantity Surveyor", "All Trades Supervisor / Foreman", "Lab Technician (Concrete)",
-      "Mason (Tiles / Marble / Block)", "Marble / Granite Cutter", "Painter (Brush / Spray)",
-      "Shuttering Carpenter", "Scaffolder", "Carpenter (Finishing / Furniture)",
-      "Furniture Polisher", "Glass Cutter", "Gypsum Board Carpenter", "Steel Fixer",
-      "Aluminium Fitter / Fabricator", "Civil Labourers", "Plumber"
+      "Quantity Surveyor", "All Trades Supervisor / Foreman / Leadhand", "Lab Technician (Concrete)",
+      "Mason (Tiles / Marble / Block / Plaster)", "Marble / Granite Cutter", "Painter (Brush / Spray)",
+      "Shuttering Carpenter", "Scaffolder", "Carpenter (Finishing / Furniture / Carving)",
+      "Furniture Polisher", "Furniture / Wood Painter (Brush / Spray)", "Glass Cutter", 
+      "Gypsum Board Carpenter", "Gypsum Board Fixer", "Steel Fixer", "Aluminium Fitter / Fabricator", 
+      "Civil Labourers", "Plumber"
+    ]
+  },
+  electrical: {
+    title: "Electrical & Instrumentation",
+    icon: BrainCircuit,
+    color: "from-blue-500 to-blue-600",
+    positions: [
+      "Engineer - Electrical / Instrument", "QA / QC Engineer / Supervisor", "Electrical / Instrument",
+      "Supervisor / Foreman / Lead hand - Electrical / Instrument", "Electrician - Building / Industrial / Generator",
+      "Instrument Technician / Analyzer Technician", "Instrument Fitter", "Cable Jointer",
+      "Tray Fitter", "Lineman", "Motor Rewinder", "Electrical Helpers", "Cable Pullers"
+    ]
+  },
+  tailoring: {
+    title: "Tailoring & Upholstery",
+    icon: Scissors,
+    color: "from-purple-500 to-purple-600",
+    positions: [
+      "Tailor (Gents / Ladies / Tent / Umbrella)", "Curtain Maker", "Cutter Master (Gents & Ladies)",
+      "Embroider (Hand / Machine)", "Upholstry Personnel", "Tailoring Helpers", "Juki Machine Mechanic",
+      "Juki Machine Operator", "Sewing Machine Operator", "Sofa Cushion Maker", "Sofa Seat Cover Maker"
+    ]
+  },
+  facility: {
+    title: "Facility Management Services",
+    icon: Building2,
+    color: "from-green-500 to-green-600",
+    positions: [
+      "Cleaners", "Helpers", "Housekeeping Staff", "Technicians", "Multi Skilled Technicians",
+      "Supervisors", "Rope Access Cleaners", "Managers"
     ]
   },
   oilgas: {
     title: "Oil & Gas / Mechanical Projects",
     icon: Zap,
+    color: "from-red-500 to-red-600",
     positions: [
       "QA / QC Engineer / Supervisor", "Welding Engineer / Supervisor (CSWIP / AWS)",
-      "Painting Engineer Supervisor (BGAS)", "Safety Officer (Mechanical Specialized)",
-      "All Trades Supervisor / Foreman", "Fabricator - Pipe / Steel / Structural",
+      "Painting Engineer Supervisor (BGAS)", "Safety Officer (Specialized In Mechanical)",
+      "All Trades Supervisor / Foreman / Leadhand", "Fabricator - Pipe / Steel / Structural",
       "Fitter - Pipe / Structural / Mechanical", "Welder - Argon / Arc / MIG / Structural",
       "Mechanical Helpers", "Rigger", "Sand Blaster / Spray Painter", "Scaffolder",
-      "Rotating Equipment Technician", "Sheet Metal Fabricator", "Steel Erector", "Millwright Fitter"
+      "Rotating Equipment Technician", "Sheet Metal Fabricator", "Sheet Metal Fitter",
+      "Steel Erector", "Millwright Fitter", "Grinder / Gas Cutter"
     ]
   },
   hospitality: {
     title: "Hospitality",
     icon: ConciergeBell,
+    color: "from-pink-500 to-pink-600",
     positions: [
       "F & B Manager", "Security Officer", "Laundry Manager", "Floor Supervisor",
-      "Accountant", "Cashier", "Receptionist", "Cook", "Beautician", "Time Keeper",
-      "Swimming Pool Attendant", "Drivers", "Hair Dresser", "Chefs", "Roti Maker",
-      "Waiters", "Stewards", "Baker", "Bell Boy", "Carpet Fixer", "Cleaners"
+      "Accountant", "Cashier", "Receptionist", "Captains", "Cook", "Beautician", 
+      "Time Keeper", "Swimming Pool", "Drivers", "Hair Dresser", "Chefs", "Butcher",
+      "Roti Maker", "Waiters", "Stewards", "Baker", "Bell Boy", "Carpet Fixer", "Cleaners"
     ]
   },
   hvac: {
     title: "HVAC",
     icon: Fan,
+    color: "from-cyan-500 to-cyan-600",
     positions: [
-      "HVAC Engineer", "HVAC Supervisor / Foreman", "Duct Supervisor / Foreman",
-      "Insulation Supervisor / Foreman", "A/C Mechanic (Window / Split / Central)",
-      "A/C Pipe Fabricator", "Duct Erector", "HVAC Technician (Copper Brazing)",
-      "Insulator", "Water Cooler Mechanic", "Duct Fabricator", "Helpers - Air Conditioning / Duct"
+      "HVAC Engineer", "HVAC Supervisor / Foreman / Lead hand", "Duct Supervisor / Foreman / Lead hand",
+      "Insulation Supervisor / Foreman / Lead hand", "A/C Mechanic - Window / Split / Central / Chiller",
+      "A/C Pipe Fabricator", "A/C Plant Supervisor", "Duct Fabricator", "Duct Insulator",
+      "Duct Fitter", "Duct Erector", "HVAC Technician (Copper Brazing)", "Insulate",
+      "Water Cooler Mechanic", "Helpers - Air Conditioning / Duct"
     ]
   }
 };
@@ -81,7 +118,7 @@ export function PositionsSection() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div 
-                  className="bg-gradient-to-r from-primary to-secondary text-white p-6 rounded-t-lg cursor-pointer"
+                  className={`bg-gradient-to-r ${section.color} text-white p-6 rounded-t-lg cursor-pointer hover:shadow-lg transition-all duration-300`}
                   onClick={() => toggleSection(key)}
                 >
                   <div className="flex items-center justify-between">
