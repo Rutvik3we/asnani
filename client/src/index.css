@@ -27,6 +27,7 @@
   --font-inter: 'Inter', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
   --radius: 0.75rem;
+  --marquee-duration: 10s;
 }
 
 .dark {
@@ -117,7 +118,11 @@
   }
 
   .animate-scroll-horizontal {
-    animation: scrollHorizontal 25s linear infinite;
+    animation-name: scrollHorizontal;
+    animation-duration: var(--marquee-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
   }
 
   .animate-wiggle {
@@ -210,7 +215,10 @@
 
 @media (max-width: 768px) {
   .animate-scroll-horizontal {
-    animation: scrollHorizontalMobile 20s linear infinite;
+    animation-name: scrollHorizontalMobile;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 }
 
