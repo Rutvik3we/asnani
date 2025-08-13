@@ -70,15 +70,6 @@ const commitments = [
   }
 ];
 
-const industries = [
-  { name: "Construction", icon: "🏗️" },
-  { name: "Oil & Gas", icon: "⛽" },
-  { name: "Hospitality", icon: "🏨" },
-  { name: "Mechanical", icon: "⚙️" },
-  { name: "Housekeeping", icon: "🧹" },
-  { name: "Manufacturing", icon: "🏭" }
-];
-
 export function ProcessSection() {
   const { ref, isVisible } = useScrollAnimation();
 
@@ -131,29 +122,6 @@ export function ProcessSection() {
               </div>
             );
           })}
-        </div>
-
-        {/* Industries We Serve */}
-        <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-            Industries We Are <span className="text-primary">Serving</span>
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6 mt-8">
-            {industries.map((industry, index) => (
-              <Card 
-                key={industry.name}
-                className={`text-center hover:shadow-lg transition-all duration-300 ${
-                  isVisible ? 'animate-fade-in' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <CardContent className="p-4 lg:p-6">
-                  <div className="text-3xl lg:text-4xl mb-3">{industry.icon}</div>
-                  <h4 className="font-semibold text-sm lg:text-base text-gray-900">{industry.name}</h4>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
 
         {/* Our Commitment Section */}
