@@ -1,4 +1,4 @@
-import { Globe, Database } from 'lucide-react';
+import { Globe, Users } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 export function AboutSection() {
@@ -20,10 +20,10 @@ export function AboutSection() {
               Positioned Among the <span className="text-primary">Top Recruitment</span> Service Providers
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Since 2011, Asnani HR Solution Manpower Consultancy has established itself as a premier recruitment service provider across various domains including oil, refinery, petrochemical, civil industries, mechanical, and many others.
+              Since 2011, Asnani HR Solution Manpower Consultancy has been a trusted recruitment partner for oil, refinery, petrochemical, civil and mechanical sectors across the Gulf/Middle East.
             </p>
             <p className="text-lg text-gray-600 mb-6">
-              We have developed a large database of candidates with diverse skills and qualifications. Our firm utilizes sophisticated information technology to ensure easy accessibility and flexibility in retrieving information within minutes.
+              We maintain a robust network of qualified candidates and leverage modern technology to match the right talent to the right role—fast and reliably.
             </p>
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
@@ -32,13 +32,13 @@ export function AboutSection() {
                 <p className="text-sm text-gray-600">Gulf/Middle East Focus</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Database className="h-12 w-12 text-primary mb-2 mx-auto" />
+                <Users className="h-12 w-12 text-primary mb-2 mx-auto" />
                 <h4 className="font-semibold">Large Database</h4>
                 <p className="text-sm text-gray-600">Skilled Candidates</p>
               </div>
             </div>
             <p className="text-lg text-gray-600">
-              We maintain excellent relationships with consulates, airlines, and local government authorities, ensuring quick completion of formalities and mobilization.
+              Strong ties with consulates, airlines and authorities help us expedite formalities and mobilization—delivering a smooth, dependable hiring experience.
             </p>
           </div>
         </div>
